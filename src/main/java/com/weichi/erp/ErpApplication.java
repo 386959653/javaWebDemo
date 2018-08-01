@@ -3,13 +3,16 @@ package com.weichi.erp;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.weichi.erp.component.freemarker.MyFreemarkerView;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +39,24 @@ public class ErpApplication {
         fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
         HttpMessageConverter<?> converter = fastJsonHttpMessageConverter;
         return new HttpMessageConverters(converter);
-
     }
+
+    /**
+     * 自定义Freemarker共享变量
+     *
+     * @return
+     */
+    @Bean
+    public CommandLineRunner customFreemarker(FreeMarkerViewResolver resolver) {
+        return new CommandLineRunner() {
+            @Override
+            public void run(String... strings) throws Exception {
+                //增加视图
+                resolver.setViewClass(MyFreemarkerView.class);
+            }
+        };
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(ErpApplication.class, args);
     }
