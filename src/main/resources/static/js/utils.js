@@ -305,10 +305,13 @@ var AjaxHelper = (function () {
             async = async || callback || false;
             callback = data;
             data = undefined;
+        } else {
+            data = JSON.stringify(data);
         }
         $.ajax({
             type: 'POST',
             dataType: "json",
+            contentType: "application/json;charset=UTF-8",
             url: url,
             data: data,
             cache: false,
