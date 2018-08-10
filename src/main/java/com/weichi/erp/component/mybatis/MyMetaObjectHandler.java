@@ -46,13 +46,13 @@ public class MyMetaObjectHandler extends MetaObjectHandler {
                 .getAuthentication()
                 .getPrincipal();
         Object updateUsername = getFieldValByName("updateUsername", metaObject);
-        if (updateUsername == null) {
+//        if (updateUsername == null) {
             setFieldValByName("updateUsername", userDetails.getUsername(), metaObject);
-        }
+//        }
 
         Object updateTime = getFieldValByName("updateTime", metaObject);
-        if (updateTime == null) {
+//        if (updateTime == null) {
             setFieldValByName("updateTime", new Date(), metaObject);
-        }
+//        }
     }
 }
