@@ -302,7 +302,7 @@ var AjaxHelper = (function () {
     function post(url, data, callback, async) {
         var succeed = true;
         if (jQuery.isFunction(data)) {
-            async = async || callback;
+            async = async || callback || false;
             callback = data;
             data = undefined;
         }
