@@ -283,26 +283,12 @@ var Utils = (function () {
     };
 })();
 
-var DlgUtils = (function () {
-    function modal(title, content) {
-        var d = dialog({
-            title: title,
-            content: content
-        });
-        d.showModal();
-    }
-
-    return {
-        //模态提示框
-        "modal": modal
-    };
-})();
 
 var AjaxHelper = (function () {
     function post(url, data, callback, async) {
         var succeed = true;
         if (jQuery.isFunction(data)) {
-            async = async || callback || false;
+            async = async || callback || true;
             callback = data;
             data = undefined;
         } else {
@@ -315,7 +301,7 @@ var AjaxHelper = (function () {
             url: url,
             data: data,
             cache: false,
-            async: async || false,
+            async: async || true,
             success: function (response) {
                 if (Utils.isEmpty(response.status)) {
                     if (callback) callback(response);
@@ -332,11 +318,12 @@ var AjaxHelper = (function () {
                 }
             },
             error: function (xhr, textStatus, thrownError) {
-                DlgUtils.modal("很遗憾", "<div>Http status: " + xhr.status + " "
+                $('#ajaxErrorModal').find('.modal-body').html("<div>Http status: " + xhr.status + " "
                     + xhr.statusText + "</div>" + "<div>textStatus: "
                     + textStatus + "</div>" + "<div>thrownError:"
                     + thrownError + "</div>" + "<div>" + xhr.responseText
-                    + "</div>");
+                    + "</div>")
+                $('#ajaxErrorModal').modal('toggle');
                 succeed = false;
             }
         });
