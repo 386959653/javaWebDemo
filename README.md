@@ -36,3 +36,4 @@
     再在SuperDomain.java的id上配置@JSONField(serializeUsing = LongToStringSerializer.class)
     26. 实现loading遮罩效果，js控制：$(".loading").toggle();
     27. 实现响应式模态框，定义在lib.ftl的宏MY_MODAL
+    28. 实现maven只过滤application.properties，以免影响其它位于resource文件夹中的文件
