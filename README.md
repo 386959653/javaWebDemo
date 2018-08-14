@@ -20,7 +20,9 @@
     13. 利用Druid实现性能监控，用浏览器访问 http://localhost:8080/druid (默认用户名和密码都是123)
     14. 实现了子角色默认继承父角色权限，用户admin具有admin角色，用户test具有user角色，admin是user的子角色，
     密码都是123，访问http://localhost:8080/hello2需要user角色，访问http://localhost:8080/userList需要admin角色
-    ，如果具有了admin角色，就可以访问只有user角色可以访问的链接
+    ，如果具有了admin角色，就可以访问只有user角色可以访问的链接,具体查看MyAccessDecisionManager.java 和
+     MyInvocationSecurityMetadataSourceService.java，在sys_permission表中配置要过滤的链接，不仅支持全匹配
+     也支持通配符匹配，比如/dashboardController/**，就能匹配所有/dashboardController/下的链接
     15. 实现退出系统功能
     16. 实现登录错误提示功能
     17. 实现jsonResult
