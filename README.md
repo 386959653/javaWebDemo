@@ -43,8 +43,9 @@
     
             errorModal.content="内容";
             $('#errorModal').modal('toggle');
-     “提示消息”js api： 
+        “提示消息”js api： 
      
-        tipModal.content="内容";
-        $('#tipModal').modal('toggle');
-    
+            tipModal.content="内容";
+            $('#tipModal').modal('toggle');
+       
+    31. 实现web.xml设置session失效时间，目前为24小时
