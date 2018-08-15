@@ -318,7 +318,7 @@ var AjaxHelper = (function () {
                 }
             },
             error: function (xhr, textStatus, thrownError) {
-                $('#ajaxErrorModal').find('.modal-body').html("<div>Http status: " + xhr.status + " "
+                $('#errorModal').find('.modal-body').html("<div>Http status: " + xhr.status + " "
                     + xhr.statusText + "</div>" + "<div>textStatus: "
                     + textStatus + "</div>" + "<div>thrownError:"
                     + thrownError + "</div>" + "<div>" + xhr.responseText

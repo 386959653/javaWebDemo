@@ -13,7 +13,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-                ${content}
+                ${content}{{ content }}
             </div>
             <#if title=="确认消息">
             <div class="modal-footer">

@@ -39,3 +39,12 @@
     26. 实现loading遮罩效果，js控制：$(".loading").toggle();
     27. 实现响应式模态框，定义在lib.ftl的宏MY_MODAL
     28. 实现maven只过滤application.properties，以免影响其它位于resource文件夹中的文件
+    30. 实现“错误消息”和“提示消息”，定义在base.ftl，“错误消息”js api： 
+    
+            errorModal.content="内容";
+            $('#errorModal').modal('toggle');
+     “提示消息”js api： 
+     
+        tipModal.content="内容";
+        $('#tipModal').modal('toggle');
+    

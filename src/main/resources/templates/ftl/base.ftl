@@ -30,11 +30,26 @@
 </head>
 
 <body>
-    <@com.MY_MODAL id="ajaxErrorModal" title="错误消息"/>
+    <@com.MY_MODAL id="errorModal" title="错误消息"/>
+    <@com.MY_MODAL id="tipModal" title="提示消息"/>
 <div class="loading" style="display: none;">
     <i class="fa fa-refresh fa-spin"></i>
 </div>
     <#nested>
+<script>
+    var errorModal = new Vue({
+        el: '#errorModal',
+        data: {
+            content: ''
+        }
+    });
+    var tipModal = new Vue({
+        el: '#tipModal',
+        data: {
+            content: ''
+        }
+    });
+</script>
 </body>
 
 </html>
