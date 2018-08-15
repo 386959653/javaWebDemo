@@ -32,8 +32,6 @@
     21. 需要重新登录时候，实现了就算是Ajax也能直接跳转到登录页面
     22. 在DefaultView类中设置默认首页
     23. 实现自定义Freemarker共享变量，配置类MyFreemarkerView.java
-    24. 实现Freemarker统一引入类文件，可以在application.properties的auto_import字段配置，引入多个类用;隔开，
-    配置类MyFreemarkerConfig.java
     25. 实现把主键id用fastjson序列化时候，自动从Long转为String类型，具体类：LongToStringSerializer.java,
     再在SuperDomain.java的id上配置@JSONField(serializeUsing = LongToStringSerializer.class)
     26. 实现loading遮罩效果，js控制：$(".loading").toggle();
@@ -48,4 +46,4 @@
             tipModal.content="内容";
             $('#tipModal').modal('toggle');
        
-    31. 实现web.xml设置session失效时间，目前为24小时
+    28. 实现web.xml设置session失效时间，目前为24小时

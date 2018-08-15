@@ -1,3 +1,4 @@
+<#import "lib.ftl" as com>
 <#macro Html title="" css="">
 
 <!DOCTYPE HTML>
