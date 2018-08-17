@@ -307,7 +307,8 @@ var AjaxHelper = (function () {
                     if (callback) callback(response);
                 }
                 else if (response.status === 'error') {
-                    alert('很遗憾', response.message, 'face-sad');
+                    errorModal.content = response.message;
+                    $('#errorModal').modal('toggle');
                     succeed = false;
                 }
                 else if (response.status === "needLogin") {
