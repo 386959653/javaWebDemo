@@ -13,6 +13,7 @@ public class MyFreemarkerView extends FreeMarkerView {
     @Override
     protected void exposeHelpers(Map<String, Object> model, HttpServletRequest request) throws Exception {
         model.put("appName", "ERP");
+        model.put("ctx", request.getContextPath());
         super.exposeHelpers(model, request);
     }
 

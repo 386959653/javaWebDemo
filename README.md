@@ -47,3 +47,9 @@
             $('#tipModal').modal('toggle');
        
     28. 实现web.xml设置session失效时间，目前为24小时
+    29. 实现ctx放进共享变量,freemarker里直接用
+    
+            ${ctx}
+    30. 实现freemarker分页模板在lib.ftl的page宏里，用法示例：
+    
+            <@com.paging url="${ctx}/dashboardController/product"/>
