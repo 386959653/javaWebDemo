@@ -1,5 +1,5 @@
 <#import "lib.ftl" as com>
-<#macro Html title="" css="">
+<#macro Html title="" css="" headAttr="" bodyAttr="">
 
 <!DOCTYPE HTML>
 <html>
@@ -25,12 +25,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="../js/utils.js"></script>
     <link rel="stylesheet" href="../../css/adminLTE/component/font-awesome/css/font-awesome.css" type="text/css"/>
+
+    ${headAttr}
+
     <style>
             ${css}
     </style>
 </head>
 
-<body>
+<body ${bodyAttr}>
     <@com.MY_MODAL id="errorModal" title="错误消息"/>
     <@com.MY_MODAL id="tipModal" title="提示消息"/>
 <div class="loading" style="display: none;">

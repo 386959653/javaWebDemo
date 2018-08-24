@@ -303,7 +303,7 @@ var AjaxHelper = (function () {
             cache: false,
             async: async || true,
             success: function (response) {
-                $(".loading").toggle();
+                $(".loading").hide();
                 if (Utils.isEmpty(response.status)) {
                     if (callback) callback(response);
                 }

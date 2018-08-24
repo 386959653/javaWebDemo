@@ -3,6 +3,7 @@ package com.weichi.erp;
 import com.weichi.erp.component.springSecurity.MyAuthenticationProvider;
 import com.weichi.erp.component.springSecurity.MyFilterSecurityInterceptor;
 import com.weichi.erp.component.springSecurity.MyLoginUrlAuthenticationEntryPoint;
+import com.weichi.erp.component.springSecurity.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 /**
  * Created by Wewon on 2018/5/28 9:34
@@ -21,7 +26,10 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
     private MyAuthenticationProvider provider;//自定义验证
     @Autowired
     private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
-
+    @Autowired
+    private DataSource dataSource;
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,6 +42,14 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
+                //记住我开始,场景：有这样一个场景——有个用户初访并登录了你的网站，
+                // 然而第二天他又来了，却必须再次登录。于是就有了“记住我”这样的功能来方便用户使用
+                .and()
+                .rememberMe()
+                .tokenRepository(persistentTokenRepository())//设置操作表的Repository
+                .tokenValiditySeconds(60 * 60 * 24 * 7)//设置记住我的时间为7天
+                .userDetailsService(myUserDetailsService)//设置userDetailsService
+
                 .and()
                 .authorizeRequests()        // 定义哪些URL需要被保护、哪些不需要被保护
 //                .antMatchers("/hello2").permitAll()
@@ -55,5 +71,12 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationEntryPoint myLoginUrlAuthenticationEntryPoint() {
         return new MyLoginUrlAuthenticationEntryPoint("/login");
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        return tokenRepository;
     }
 }

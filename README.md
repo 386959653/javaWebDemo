@@ -53,3 +53,6 @@
     30. 实现freemarker分页模板在lib.ftl的page宏里，用法示例：
     
             <@com.paging url="${ctx}/dashboardController/product"/>
+    31. 实现响应式登陆页面
+    32. 实现验证码
+    33. 实现“记住我”功能，默认记住7天，在 BrowerSecurityConfig.java配置
