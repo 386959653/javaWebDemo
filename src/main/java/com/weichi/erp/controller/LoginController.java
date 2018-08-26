@@ -34,14 +34,14 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/vrifyCode")
-    public void vrifyCode(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+    @RequestMapping("/verifyCode")
+    public void verifyCode(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         byte[] captchaChallengeAsJpeg = null;
         ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
         try {
             //生产验证码字符串并保存到session中
             String createText = defaultKaptcha.createText();
-            httpServletRequest.getSession().setAttribute("vrifyCode", createText);
+            httpServletRequest.getSession().setAttribute("verifyCode", createText);
             //使用生产的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
             BufferedImage challenge = defaultKaptcha.createImage(createText);
             ImageIO.write(challenge, "jpg", jpegOutputStream);
@@ -65,13 +65,13 @@ public class LoginController {
 
     @RequestMapping("/verifyCodeCheck")
     @ResponseBody
-    public JsonResult<?> checkVerifyCode(HttpSession httpSession, @RequestBody String vrifyCode) {
+    public JsonResult<?> checkVerifyCode(HttpSession httpSession, @RequestBody String verifyCode) {
         JsonResult jsonResult = new JsonResult();
         try {
-            String captchaId = (String) httpSession.getAttribute("vrifyCode");
-            if (!vrifyCode.equalsIgnoreCase(captchaId)) {
+            String captchaId = (String) httpSession.getAttribute("verifyCode");
+            if (!verifyCode.equalsIgnoreCase(captchaId)) {
                 jsonResult.setMessage("验证码错误");
-                httpSession.removeAttribute("vrifyCode");
+                httpSession.removeAttribute("verifyCode");
             }
         } catch (Exception e) {
             e.printStackTrace();

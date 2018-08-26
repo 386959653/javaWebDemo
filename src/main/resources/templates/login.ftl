@@ -40,13 +40,13 @@ input[type="text"],input[type="password"]{padding-left:26px;}
                                 <div class="col-md-8 col-xs-6  ">
 
                                     <i class="fa fa-shield" aria-hidden="true"></i>
-                                    <input class="form-control required" type="text" name="vrifyCode" placeholder="验证码"
-                                           id="vrifyCode"/>
+                                    <input class="form-control required" type="text" name="verifyCode" placeholder="验证码"
+                                           id="verifyCode"/>
 
                                 </div>
                                 <div class="col-md-4 col-xs-6">
                                     <img id="verifyCodeImg" class="pull-right" alt="验证码"
-                                         onclick="this.src='${ctx}/vrifyCode?d='+new Date()*1" src="${ctx}/vrifyCode"
+                                         onclick="this.src='${ctx}/verifyCode?d='+new Date()*1" src="${ctx}/verifyCode"
                                          style="padding-top:20px;"/>
                                 </div>
                             </div>
@@ -89,13 +89,14 @@ input[type="text"],input[type="password"]{padding-left:26px;}
 </div>
 <script type="text/javascript">
 
-    $('#vrifyCode').blur(function () {
+    $('#verifyCode').blur(function () {
         var url = "${ctx}/verifyCodeCheck";
-        var data = $('#vrifyCode').val().trim();
+        var data = $('#verifyCode').val().trim();
         AjaxHelper.post(url, data, function (response) {
             if (response.message == "验证码错误") {
                 $('#verifyCodeCheckResult').toggle();
                 $('#verifyCodeImg').click();
+                $("#verifyCode").val("");
             }
         });
     });
