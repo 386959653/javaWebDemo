@@ -156,6 +156,12 @@
             <version>2.3.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>wagon-maven-plugin</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -190,10 +196,42 @@
             </resource>
         </resources>
 
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.10</version>
+            </extension>
+        </extensions>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <executions>
+                    <execution>
+                        <id>upload-javadoc</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>upload-single</goal>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <configuration>
+                            <serverId>webserver</serverId>
+                            <fromFile>target/officialWeb.war</fromFile>
+                            <url>scp://47.100.47.85:22/usr/officialWeb/webapps/ROOT/</url>
+                            <commands>
+                                <command>/usr/officialWeb/webapps/ROOT/autoDeploy.sh</command>
+                            </commands>
+                            <displayCommandOutputs>true</displayCommandOutputs>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -224,9 +262,10 @@
             </activation>
             <properties>
                 <resource.delimiter>${}</resource.delimiter>
-                <jdbc.url>jdbc:mysql://192.168.3.105:3306/test2?useUnicode=true&amp;characterEncoding=utf8</jdbc.url>
-                <jdbc.username>root</jdbc.username>
-                <jdbc.password>123456</jdbc.password>
+                <jdbc.url>jdbc:mysql://mysql:3306/erp?useUnicode=true&amp;characterEncoding=utf8</jdbc.url>
+                <!--基于安全原因，生产数据库相关信息配置在本地maven settings.xml-->
+                <!--<jdbc.username>root</jdbc.username>-->
+                <!--<jdbc.password>123456</jdbc.password>-->
                 <log4j.level>INFO</log4j.level>
                 <!--mybatis热加载-->
                 <refreshMapper>false</refreshMapper>

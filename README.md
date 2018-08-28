@@ -56,3 +56,5 @@
     31. 实现响应式登陆页面
     32. 实现验证码
     33. 实现“记住我”功能，默认记住7天，在 BrowerSecurityConfig.java配置
+    34. 实现maven自动部署到远程服务器，在maven的verify阶段触发。需要在tomcat挂载根目录先上传autoDeploy.sh脚本，
+    该脚本在doc文件夹里，如果项目名称改变脚本内容需要相应更改。
