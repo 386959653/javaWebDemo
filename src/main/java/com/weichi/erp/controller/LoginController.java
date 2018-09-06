@@ -1,5 +1,6 @@
 package com.weichi.erp.controller;
 
+import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.weichi.erp.component.myType.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String freemarker(@RequestParam(value = "error", required = false) String error, Map<String, Object> map) {
         if (error != null) {
-            map.put("error", "error");
+            map.put("error", error);
         }
         return "login";
     }
@@ -41,7 +42,7 @@ public class LoginController {
         try {
             //生产验证码字符串并保存到session中
             String createText = defaultKaptcha.createText();
-            httpServletRequest.getSession().setAttribute("verifyCode", createText);
+            httpServletRequest.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, createText);
             //使用生产的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
             BufferedImage challenge = defaultKaptcha.createImage(createText);
             ImageIO.write(challenge, "jpg", jpegOutputStream);
@@ -68,10 +69,10 @@ public class LoginController {
     public JsonResult<?> checkVerifyCode(HttpSession httpSession, @RequestBody String verifyCode) {
         JsonResult jsonResult = new JsonResult();
         try {
-            String captchaId = (String) httpSession.getAttribute("verifyCode");
+            String captchaId = (String) httpSession.getAttribute(Constants.KAPTCHA_SESSION_KEY);
             if (!verifyCode.equalsIgnoreCase(captchaId)) {
                 jsonResult.setMessage("验证码错误");
-                httpSession.removeAttribute("verifyCode");
+                httpSession.removeAttribute(Constants.KAPTCHA_SESSION_KEY);
             }
         } catch (Exception e) {
             e.printStackTrace();

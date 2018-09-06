@@ -31,7 +31,7 @@
 </div>
 </#macro>
 
-<#macro webUploader thumbnailWidth="100" thumbnailHeight="100" serverUrl="">
+<#macro WEB_UPLOADER thumbnailWidth="100" thumbnailHeight="100" serverUrl="">
 <#--<script type="text/javascript">-->
     // 图片上传demo
     jQuery(function () {
@@ -153,7 +153,7 @@ var rows2 = ${grid}.getDataLength();
     </#if>
 </#macro>
 
-<#macro paging url>
+<#macro PAGING url>
 <#--分页-->
 <ul class="pagination inline">
 <#--第一页，禁用“上一页”按钮-->
@@ -170,4 +170,3 @@ var rows2 = ${grid}.getDataLength();
     </#if>
 </ul>
 </#macro>
-

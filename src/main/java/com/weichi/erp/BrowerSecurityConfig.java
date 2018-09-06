@@ -1,9 +1,6 @@
 package com.weichi.erp;
 
-import com.weichi.erp.component.springSecurity.MyAuthenticationProvider;
-import com.weichi.erp.component.springSecurity.MyFilterSecurityInterceptor;
-import com.weichi.erp.component.springSecurity.MyLoginUrlAuthenticationEntryPoint;
-import com.weichi.erp.component.springSecurity.MyUserDetailsService;
+import com.weichi.erp.component.springSecurity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +9,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -33,6 +33,11 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        LoginAuthenticationFilter loginAuthenticationFilter = new LoginAuthenticationFilter();
+        loginAuthenticationFilter.setAuthenticationManager(authenticationManager());
+        AntPathRequestMatcher requestMatcher = new AntPathRequestMatcher("/user/login", "POST");
+        loginAuthenticationFilter.setRequiresAuthenticationRequestMatcher(requestMatcher);
+        loginAuthenticationFilter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error=captchaError"));
         http.formLogin()                    //  定义当需要用户登录时候，转到的登录页面。
                 .loginPage("/login")           // 设置登录页面
                 .permitAll()
@@ -60,6 +65,7 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();          // 关闭csrf防护
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+        http.addFilterBefore(loginAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Autowired

@@ -34,7 +34,6 @@ input[type="text"],input[type="password"]{padding-left:26px;}
                             <input class="form-control required" type="password" placeholder="密码" id="password"
                                    name="password"/>
                         </div>
-    <#if error ??>
                         <div class="form-group ">
                             <div class="row">
                                 <div class="col-md-8 col-xs-6  ">
@@ -51,7 +50,6 @@ input[type="text"],input[type="password"]{padding-left:26px;}
                                 </div>
                             </div>
                         </div>
-    </#if>
                         <div class="form-group ">
                             <label class="checkbox">
                                 <input type="checkbox" name="remember-me"/>记住我
@@ -59,14 +57,15 @@ input[type="text"],input[type="password"]{padding-left:26px;}
                         </div>
 
                         <div class="form-group ">
-                            <button type="submit" class="btn btn-success pull-right" name="submit"
+                            <button type="submit" class="btn btn-success pull-right" name="submit" id="submit"
                                     style="margin-bottom:10px;">登录
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="verifyCodeCheckResult" style="display: none"
+
+            <div id="verifyCodeCheckResult" style="display:<#if captchaError ??> block<#else> none</#if>"
                  class="alert alert-danger alert-dismissable text-center">
                 <button type="button" class="close" data-dismiss="alert"
                         aria-hidden="true">
@@ -74,6 +73,7 @@ input[type="text"],input[type="password"]{padding-left:26px;}
                 </button>
                 验证码错误，请重新输入！
             </div>
+
                          <#if error ??>
     <div class="alert alert-danger alert-dismissable text-center">
         <button type="button" class="close" data-dismiss="alert"
@@ -94,9 +94,13 @@ input[type="text"],input[type="password"]{padding-left:26px;}
         var data = $('#verifyCode').val().trim();
         AjaxHelper.post(url, data, function (response) {
             if (response.message == "验证码错误") {
-                $('#verifyCodeCheckResult').toggle();
+                $('#verifyCodeCheckResult').show();
                 $('#verifyCodeImg').click();
                 $("#verifyCode").val("");
+                $("#submit").attr("disabled", true);
+            } else {
+                $('#verifyCodeCheckResult').hide();
+                $("#submit").attr("disabled", false);
             }
         });
     });
