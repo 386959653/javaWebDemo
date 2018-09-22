@@ -88,7 +88,9 @@ input[type="text"],input[type="password"]{padding-left:26px;}
 
 </div>
 <script type="text/javascript">
-
+    $('#verifyCode').focus(function () {
+        $("#submit").attr("disabled", false);
+    });
     $('#verifyCode').blur(function () {
         var url = "${ctx}/verifyCodeCheck";
         var data = $('#verifyCode').val().trim();
