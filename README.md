@@ -59,3 +59,6 @@
     34. 实现maven自动部署到远程服务器，在maven的verify阶段触发。需要在tomcat挂载根目录先上传autoDeploy.sh脚本，
     该脚本在doc文件夹里，如果项目名称改变脚本内容需要相应更改。
     35. 实现xml和javabean互转，具体类是XmlUtil.java
+    36. 引入日期控件bootstrap-datetimepicker
+    37. DateUtils增加“获取距离当前日期前几天的日期”方法
+    38. 引入joda-time包实现@RequestParam可以直接把前端传过来的字符串转为日期

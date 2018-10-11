@@ -140,6 +140,18 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     }
 
     /**
+     * 获取距离当前日期前几天的日期
+     *
+     * @param pastDays
+     * @return
+     */
+    public static Date pastDate(int pastDays) {
+        Calendar calendar = Calendar.getInstance();//此时它获取的是系统当前时间
+        calendar.add(Calendar.DATE, -pastDays);    //得到前几天
+        return calendar.getTime();
+    }
+
+    /**
      * 获取过去的小时
      *
      * @param date
