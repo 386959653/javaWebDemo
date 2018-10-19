@@ -62,3 +62,9 @@
     36. 引入日期控件bootstrap-datetimepicker
     37. DateUtils增加“获取距离当前日期前几天的日期”方法
     38. 引入joda-time包实现@RequestParam可以直接把前端传过来的字符串转为日期
+    39. 注入application.properties中自定义的配置(my.开头)到MyApplicationProperties，使用方法
+    
+            @Autowired
+                private MyApplicationProperties myApplicationProperties;
+                
+    40. 

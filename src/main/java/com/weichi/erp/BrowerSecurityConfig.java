@@ -1,20 +1,23 @@
 package com.weichi.erp;
 
-import com.weichi.erp.component.springSecurity.*;
+import com.weichi.erp.component.springSecurity.MyAuthenticationProvider;
+import com.weichi.erp.component.springSecurity.MyFilterSecurityInterceptor;
+import com.weichi.erp.component.springSecurity.MyLoginUrlAuthenticationEntryPoint;
+import com.weichi.erp.component.springSecurity.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 /**
@@ -30,17 +33,15 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
     @Autowired
     private MyUserDetailsService myUserDetailsService;
+    @Autowired
+    private AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> authenticationDetailsSource;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        LoginAuthenticationFilter loginAuthenticationFilter = new LoginAuthenticationFilter();
-        loginAuthenticationFilter.setAuthenticationManager(authenticationManager());
-        AntPathRequestMatcher requestMatcher = new AntPathRequestMatcher("/user/login", "POST");
-        loginAuthenticationFilter.setRequiresAuthenticationRequestMatcher(requestMatcher);
-        loginAuthenticationFilter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error=captchaError"));
         http.formLogin()                    //  定义当需要用户登录时候，转到的登录页面。
                 .loginPage("/login")           // 设置登录页面
                 .permitAll()
+                .authenticationDetailsSource(authenticationDetailsSource)// 自定义authentication
                 .loginProcessingUrl("/user/login")  // 登录请求拦截的url,也就是form表单提交时指定的action
                 .failureForwardUrl("/login?error=error") // 登录失败页面
                 .and().exceptionHandling().authenticationEntryPoint(myLoginUrlAuthenticationEntryPoint())//未登录时候跳转页面的处理
@@ -65,7 +66,6 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();          // 关闭csrf防护
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
-        http.addFilterBefore(loginAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Autowired

@@ -4,11 +4,13 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.weichi.erp.component.freemarker.MyFreemarkerView;
+import com.weichi.erp.domain.MyApplicationProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -24,6 +26,11 @@ import java.util.List;
 })
 @MapperScan("com.weichi.erp.dao")
 public class ErpApplication {
+    @Bean
+    @ConfigurationProperties(prefix = "my")
+    public MyApplicationProperties connectionSettings() {
+        return new MyApplicationProperties();
+    }
     @Bean
     public HttpMessageConverters fastJsonHttpMessageConverters() {
         //1.需要定义一个convert转换消息的对象;

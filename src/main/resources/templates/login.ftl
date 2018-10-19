@@ -95,7 +95,8 @@ input[type="text"],input[type="password"]{padding-left:26px;}
         var url = "${ctx}/verifyCodeCheck";
         var data = $('#verifyCode').val().trim();
         AjaxHelper.post(url, data, function (response) {
-            if (response.message == "验证码错误") {
+            if (Utils.isNotEmpty(response.message)) {
+                $('#verifyCodeCheckResult').text(response.message);
                 $('#verifyCodeCheckResult').show();
                 $('#verifyCodeImg').click();
                 $("#verifyCode").val("");
