@@ -10,6 +10,7 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -51,20 +52,26 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
     //此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-        if (map == null) loadResourceDefine();
+        if (map == null)
+            loadResourceDefine();
 //        loadResourceDefine();
         //object 中包含用户请求的request 信息
         HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
         AntPathRequestMatcher matcher;
         String resUrl;
+        Collection<ConfigAttribute> matchedRoleArray = new ArrayList<>();
         for (Iterator<String> iter = map.keySet().iterator(); iter.hasNext(); ) {
             resUrl = iter.next();
             matcher = new AntPathRequestMatcher(resUrl);
             if (matcher.matches(request)) {
-                return map.get(resUrl);
+                ((ArrayList<ConfigAttribute>) matchedRoleArray).addAll(map.get(resUrl));
             }
         }
-        return null;
+        if (CollectionUtils.isEmpty(matchedRoleArray)) {
+            return null;
+        } else {
+            return matchedRoleArray;
+        }
     }
 
     @Override
