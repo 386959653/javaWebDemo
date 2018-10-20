@@ -64,14 +64,13 @@ input[type="text"],input[type="password"]{padding-left:26px;}
                     </div>
                 </div>
             </div>
+            <div class="well text-center">
+                <span>还没有账号?</span>&nbsp;&nbsp;
+                <a href="${ctx}/showRegisterPage">立即注册</a>
+            </div>
 
             <div id="verifyCodeCheckResult" style="display:<#if captchaError ??> block<#else> none</#if>"
                  class="alert alert-danger alert-dismissable text-center">
-                <button type="button" class="close" data-dismiss="alert"
-                        aria-hidden="true">
-                    &times;
-                </button>
-                验证码错误，请重新输入！
             </div>
 
                          <#if error ??>
