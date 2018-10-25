@@ -36,10 +36,10 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
         for (SysPermission permission : permissions) {
             array = new ArrayList<>();
             // 根据权限从数据库里获取对应的角色
-            List<Object> sysRoles = new SysRole().sql().selectObjs("SELECT t.`role_name` FROM sys_role t\n" +
+            List<Object> sysRoleIdLise = new SysRole().sql().selectObjs("SELECT t.`id` FROM sys_role t\n" +
                     "WHERE t.`id` in (SELECT t2.`role_id`  FROM role_permission t2 WHERE t2.`permission_id`={0})", permission.getId());
-            for (Object sysRole : sysRoles) {
-                cfg = new SecurityConfig(sysRole.toString());
+            for (Object sysRoleId : sysRoleIdLise) {
+                cfg = new SecurityConfig(sysRoleId.toString());
                 //此处添加的信息将会作为MyAccessDecisionManager类的decide的第三个参数。
                 array.add(cfg);
             }

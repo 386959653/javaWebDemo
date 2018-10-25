@@ -40,19 +40,22 @@ public class MyUserDetailsService implements UserDetailsService {
         if (sysUser == null) {
             throw new UsernameNotFoundException("找不到用户名");
         }
+        Long roleId = (Long) sysUser.sql().selectObj("SELECT t2.`role_id`  FROM user_role t2 WHERE t2.`user_id`={0}", sysUser.getId());
+        if (roleId == null) {
+            throw new UsernameNotFoundException("找不到用户名对应的角色");
+        }
+        SysRole sysRole = new SysRole();
+        sysRole = sysRole.selectById(roleId);
 
-        List<Object> roleNameList = new SysRole().sql().selectObjs("SELECT t3.`role_name` FROM sys_role t3 WHERE t3.`id` IN" +
-                        "( SELECT t.`pid` FROM sys_role t WHERE t.`id` IN (SELECT t2.`role_id`  FROM user_role t2 WHERE t2.`user_id`={0}))\n" +
-                        "UNION \n" +
-                        "SELECT t.`role_name` FROM sys_role t WHERE t.`id` IN (SELECT t2.`role_id`  FROM user_role t2 WHERE t2.`user_id`={0})"
-                , sysUser.getId());
+        List<Long> roleIdList = sysRoleMapper.listRoleIdAndParentRoleId(roleId);
         List<GrantedAuthority> authorities = new ArrayList<>();
-        for (Object roleName : roleNameList) {
-            authorities.add(new SimpleGrantedAuthority(roleName.toString()));
+        for (Long roleIdTemp : roleIdList) {
+            authorities.add(new SimpleGrantedAuthority(roleIdTemp.toString()));
         }
 
-        // 封装用户信息，并返回。参数分别是：用户id，用户名，密码，用户角色
+        // 封装用户信息，并返回。参数分别是：用户id，用户名，密码，用户拥有的角色（用户本身所属角色，及子角色）
         MyUserDetails user = new MyUserDetails(sysUser.getId(), s, sysUser.getPassword(), authorities);
+        user.setSysRole(sysRole);
         return user;
     }
 }

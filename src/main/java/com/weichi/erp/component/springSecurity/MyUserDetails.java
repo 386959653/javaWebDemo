@@ -1,5 +1,6 @@
 package com.weichi.erp.component.springSecurity;
 
+import com.weichi.erp.domain.SysRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -10,7 +11,21 @@ import java.util.Collection;
  */
 public class MyUserDetails extends User {
 
+    private SysRole sysRole;
+
     private Long userId;
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public SysRole getSysRole() {
+        return sysRole;
+    }
+
+    public void setSysRole(SysRole sysRole) {
+        this.sysRole = sysRole;
+    }
 
     public MyUserDetails(Long userId, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
