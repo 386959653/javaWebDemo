@@ -69,3 +69,25 @@
                 private MyApplicationProperties myApplicationProperties;
                 
     40. 实现用户注册功能
+    41. 引入剪切复制js库clipboard.js api： 
+        
+            引入js：
+            
+                <!--引用剪切复制js-->
+                    <script src="${ctx}/js/clipboard/clipboard.min.js"></script>
+            html中的复制按钮：
+                                      
+                <a href="#" data-clipboard-target="#activationCode" class="js-copy btn btn-success btn-sm">复制</a>
+            写在script中的： 
+         
+                <#--复制剪切功能-->
+                    var clipboard = new ClipboardJS('.js-copy');
+                    //复制成功执行的回调，可选
+                    clipboard.on('success', function(e) {
+                        tipModal.content="复制成功！";
+                        $('#tipModal').modal('toggle');
+                    });
+                    //复制失败执行的回调，可选
+                    clipboard.on('error', function(e) {
+                        tipModal.content="复制失败，请手动复制！";
+                    });
