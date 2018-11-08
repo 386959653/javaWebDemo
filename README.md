@@ -84,10 +84,17 @@
                     var clipboard = new ClipboardJS('.js-copy');
                     //复制成功执行的回调，可选
                     clipboard.on('success', function(e) {
-                        tipModal.content="复制成功！";
-                        $('#tipModal').modal('toggle');
+                        layer.open({
+                                    content: '复制成功！'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
                     });
                     //复制失败执行的回调，可选
                     clipboard.on('error', function(e) {
-                        tipModal.content="复制失败，请手动复制！";
+                        layer.open({
+                                    content: '复制失败，请手动复制！'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
                     });

@@ -20,6 +20,9 @@
     <!-- 3.3.7版本的 Bootstrap 核心 JavaScript 文件 -->
     <script type="text/javascript" src="${ctx}/css/bootstrap/js/bootstrap.min.js"></script>
 
+    <!-- layer弹层组件 JavaScript 文件 -->
+    <script type="text/javascript" src="${ctx}/js/layer_mobile/layer.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="../js/utils.js"></script>
     <link rel="stylesheet" href="../../css/adminLTE/component/font-awesome/css/font-awesome.css" type="text/css"/>
