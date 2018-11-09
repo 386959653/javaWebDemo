@@ -98,3 +98,8 @@
                                     ,time: 2 //2秒后自动关闭
                                 });
                     });
+                
+    42. 把系统参数放在数据库里，系统启动后，读入缓存，具体实现类MyApplicationRunner.java，对应数据库表sys_config，
+    读取系统参数的api
+    
+            Cache.getSysConfigMap()

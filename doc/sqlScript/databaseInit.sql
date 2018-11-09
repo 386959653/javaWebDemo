@@ -117,3 +117,22 @@ insert  into `user_role`(`id`,`user_id`,`role_id`,`insert_username`,`insert_time
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 create table persistent_logins (username varchar(100) not null, series varchar(64) primary key, token varchar(64) not null, last_used timestamp not null);
+
+drop table if exists sys_config;
+
+/*==============================================================*/
+/* Table: sys_config                                            */
+/*==============================================================*/
+create table sys_config
+(
+  id                   bigint not null comment '主键',
+  parm_name            varchar(100) comment '参数名',
+  parm_value           varchar(100) comment '参数值',
+  insert_username      varchar(100) comment 'insert_username',
+  insert_time          datetime comment 'insert_time',
+  update_username      varchar(100) comment 'update_username',
+  update_time          datetime comment 'update_time',
+  primary key (id)
+);
+
+alter table sys_config comment '系统配置表';
