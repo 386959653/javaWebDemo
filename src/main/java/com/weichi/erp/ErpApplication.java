@@ -14,6 +14,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import java.util.List;
 //        ,
 //        SecurityAutoConfiguration.class})
 })
+@EnableAsync
 @MapperScan("com.weichi.erp.dao")
 public class ErpApplication {
     @Bean
