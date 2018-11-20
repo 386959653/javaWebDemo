@@ -106,6 +106,9 @@
             
     43. 实现了同步、异步(采用了线程池，实现类 AsyncTaskConfig)邮件发送功能，实现类 MailUtils，api
             
+                    @Autowired
+                    private JavaMailSenderImpl mailSender;
+                    
                     String[] receiver = {"386959653@qq.com"};
                             String subject = "This is a simple email";
                             String content = "This is a simple content";
@@ -113,3 +116,6 @@
                             mailUtils.sendSimpleEmailAsync(receiver, null, subject, content);
                     //        同步发送邮件
                             mailUtils.sendSimpleEmail(receiver, null, subject, content);
+                    
+    44. 实现全局图片默认都是响应式的，在myStyle.css中定义
+    
