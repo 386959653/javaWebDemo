@@ -118,4 +118,5 @@
                             mailUtils.sendSimpleEmail(receiver, null, subject, content);
                     
     44. 实现全局图片默认都是响应式的，在myStyle.css中定义
+    45. 引入动画css库 animate.css
     
