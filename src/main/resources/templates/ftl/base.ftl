@@ -23,9 +23,16 @@
     <!-- layer弹层组件 JavaScript 文件 -->
     <script type="text/javascript" src="${ctx}/js/layer_mobile/layer.js"></script>
 
+    <!-- CSS 动画库文件 -->
+    <link rel="stylesheet" href="${ctx}/css/animate.min.css" type="text/css"/>
+
+    <link rel="stylesheet" href="${ctx}/css/myStyle.css" type="text/css"/>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
-    <script src="../js/utils.js"></script>
+    <script src="${ctx}/js/utils.js"></script>
     <link rel="stylesheet" href="../../css/adminLTE/component/font-awesome/css/font-awesome.css" type="text/css"/>
+
+    <!-- 回到顶部插件 -->
+    <script src="${ctx}/js/jquery.scrollToTop.min.js"></script>
 
     ${headAttr}
 
@@ -40,6 +47,10 @@
 <div class="loading" style="display: none;">
     <i class="fa fa-refresh fa-spin"></i>
 </div>
+<div style="z-index:1030">
+    <a href="#top" id="toTop" style="display: inline; font-size: 4em" data-toggle="tooltip" title="回到顶部">
+        <span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+</div>
     <#nested>
 <script>
     var errorModal = new Vue({
@@ -53,6 +64,10 @@
         data: {
             content: ''
         }
+    });
+    //    回到顶部
+    $(function () {
+        $("#toTop").scrollToTop();
     });
 </script>
 </body>
