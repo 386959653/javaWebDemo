@@ -158,15 +158,25 @@ var rows2 = ${grid}.getDataLength();
 <ul class="pagination inline">
 <#--第一页，禁用“上一页”按钮-->
     <#if page.current gt 1>
-        <li><a href="${url}/${page.current-1}">«</a></li>
+        <li><a href="${url}/1">«</a></li>
+        <li><a href="${url}/${page.current-1}">&lt;</a></li>
     </#if>
-<#--当前页的前3页和后3页-->
-        <#list (page.current)..(page.pages) as index>
-<li><a href="${url}/${index}">${index}</a></li>
-        </#list>
+<#--如果总页数为0，只显示第一页-->
+<#if page.pages == 0>
+    <li><a href="${url}/1">1</a></li>
+<#else ><#--如果总页数不为0，显示当前页到最多后面10页-->
+    <#list (page.current)..(page.pages) as index>
+        <#if index_index &gt;= 10>
+            <#break>
+        </#if>
+        <li><a href="${url}/${index}">${index}</a></li>
+    </#list>
+</#if>
+
 <#--不是最后页有“下一页”按钮-->
-    <#if page.current != page.pages>
-    <li><a href="${url}/${page.current+1}">»</a></li>
+    <#if page.pages != 0 && page.current != page.pages>
+    <li><a href="${url}/${page.current+1}">&gt;</a></li>
+    <li><a href="${url}/${page.pages}">»</a></li>
     </#if>
 </ul>
 </#macro>

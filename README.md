@@ -51,7 +51,8 @@
     29. 实现ctx放进共享变量,freemarker里直接用
     
             ${ctx}
-    30. 实现freemarker分页模板在lib.ftl的page宏里，用法示例：
+    30. 实现freemarker分页，可以实现“到第一页”、“上一页”、“下一页”、“到最后一页”、
+    “每次对多显示当前页到后面9页共10页”功能，模板在lib.ftl的page宏里，用法示例：
     
             <@com.paging url="${ctx}/dashboardController/product"/>
     31. 实现响应式登陆页面
