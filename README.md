@@ -121,4 +121,12 @@
     44. 实现全局图片默认都是响应式的，在myStyle.css中定义
     45. 引入动画css库 animate.css
     46. 引入“回到顶部”插件
+    47. 实现slickGrid单元格编辑框响应式，实现方法在myStyle.css中
+                
+                /*slickGrid单元格编辑框样式*/
+                .editor-text {
+                    height: 22px;
+                    /*noinspection CssInvalidPropertyValue*/
+                    width: -webkit-fill-available;
+                }
     
