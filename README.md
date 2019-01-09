@@ -7,7 +7,15 @@
     4. 在idea中配置tomcat，默认端口8080，before launch 里设置run maven goal clean 和 run maven goal package
     5. 跳过maven test
     6. 数据库初始化：在mysql数据库中执行sql脚本文件doc/sqlScript/databaseInit.sql
-    7. 用浏览器访问 http://localhost:8080/helloTest
+    7. 配置rebel.xml，让jrebel不处理mapper，因为mybatis热刷新已经处理了
+    
+            <classpath>
+            		<dir name="项目路径/target/classes">
+                        <!-- Exclude the unimportant subpackage of package1-->
+                        <exclude name="项目路径/target/movie/WEB-INF/classes/mapper/**"/>
+            		</dir>
+            </classpath>
+    8. 用浏览器访问 http://localhost:8080/helloTest
 - 主要功能：
     1. mvc结构完整，便于后期基于这个骨架实现业务逻辑
     2. 实现了mybatis热加载
