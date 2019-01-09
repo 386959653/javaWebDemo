@@ -2,9 +2,10 @@
 - java web demo，以后开发web应用可以基于这个demo开发
 - 使用方法：
     1. idea中checkout from version control
-    2. 数据库初始化：在mysql数据库中执行sql脚本文件doc/sqlScript/databaseInit.sql
-    3. 在idea中配置tomcat，默认端口8080
-    4. 用浏览器访问 http://localhost:8080/hello2
+    2. 把模块名称erp改为你要做的新项目名称，同时把pom文件中erp替换为你要做的新项目名称
+    3. 数据库初始化：在mysql数据库中执行sql脚本文件doc/sqlScript/databaseInit.sql
+    4. 在idea中配置tomcat，默认端口8080，before launch 里设置run maven goal clean 和 run maven goal package
+    5. 用浏览器访问 http://localhost:8080/hello2
 - 主要功能：
     1. mvc结构完整，便于后期基于这个骨架实现业务逻辑
     2. 实现了mybatis热加载
