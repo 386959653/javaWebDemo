@@ -140,4 +140,12 @@
                     /*noinspection CssInvalidPropertyValue*/
                     width: -webkit-fill-available;
                 }
+                
+    48. 引入lazyLoad，实现前端图片jquery懒加载，api如下：
+    
+            <script type="text/javascript" src="${ctx}/js/lazyLoad/jquery.lazyload.min.js"></script>
+            <img src="${ctx}/img/lazyLoad.gif" data-original="实际要加载的图片地址"  class="lazy" >
+            <script type="text/javascript">
+                $('img.lazy').lazyload();
+                </script>
     
