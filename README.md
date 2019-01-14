@@ -144,8 +144,18 @@
     48. 引入lazyLoad，实现前端图片jquery懒加载，api如下：
     
             <script type="text/javascript" src="${ctx}/js/lazyLoad/jquery.lazyload.min.js"></script>
+            <#--如果用了scrollstop事件，需要引入下面这个js-->
+            <script type="text/javascript" src="${ctx}/js/lazyLoad/jquery.scrollstop.min.js"></script>
             <img src="${ctx}/img/lazyLoad.gif" data-original="实际要加载的图片地址"  class="lazy" >
+            <#--方式一：没有事件-->
             <script type="text/javascript">
                 $('img.lazy').lazyload();
                 </script>
+                
+                <script type="text/javascript">
+                <#--方式二：用了事件，如scrollstop事件-->
+                $('img.lazy').lazyload({
+                  event: 'scrollstop'
+                });
+                 </script>
     
