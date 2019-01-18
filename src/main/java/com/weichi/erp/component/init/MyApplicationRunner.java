@@ -1,15 +1,11 @@
 package com.weichi.erp.component.init;
 
-import com.weichi.erp.component.myType.Cache;
-import com.weichi.erp.domain.SysConfig;
+import com.weichi.erp.service.SysConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 项目启动后加载自定义系统参数
@@ -20,14 +16,11 @@ import java.util.Map;
 @Order(value = 1)
 public class MyApplicationRunner implements ApplicationRunner {
 
+    @Autowired
+    private SysConfigService sysConfigService;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        SysConfig sysConfig = new SysConfig();
-        List<SysConfig> sysConfigList = sysConfig.selectAll();
-        Map<String, Object> sysConfigMap = new HashMap<>();
-        for (SysConfig s : sysConfigList) {
-            sysConfigMap.put(s.getParmName(), s.getParmValue());
-        }
-        Cache.setSysConfigMap(sysConfigMap);
+        sysConfigService.refreshSysConfig();
     }
 }

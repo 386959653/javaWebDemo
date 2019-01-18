@@ -158,4 +158,23 @@
                   event: 'scrollstop'
                 });
                  </script>
+    49. 实现手动刷新系统配置参数缓存功能，在controller里
+                
+                @Autowired
+                private SysConfigService sysConfigService;
+                
+                //  刷新“系统参数缓存”
+                    @ResponseBody
+                    @RequestMapping("refreshSysConfig")
+                    public JsonResult<?> refreshSysConfig() {
+                        JsonResult jsonResult = new JsonResult();
+                        try {
+                            sysConfigService.refreshSysConfig();
+                        } catch (Exception e) {
+                            jsonResult.setStatus(JsonResult.ERROR);
+                            e.printStackTrace();
+                        }
+                
+                        return jsonResult;
+                    }
     
