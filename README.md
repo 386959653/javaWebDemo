@@ -184,4 +184,8 @@
             @Autowired
                 CacheManager cacheManager;
                 
-            hotGoodsList = (List<HotGoods>) cacheManager.getCache("myCache").get("getHotGoods",ArrayList.class);
+            hotGoodsList = (List<HotGoods>) cacheManager.getCache("myCache").get("getHotGoods", ArrayList.class);
+                    if (CollectionUtils.isEmpty(hotGoodsList)){
+                        cacheManager.getCache("myCache").put("getHotGoods",this.getHotGoods());
+                        hotGoodsList = (List<HotGoods>) cacheManager.getCache("myCache").get("getHotGoods", ArrayList.class);
+                    }
