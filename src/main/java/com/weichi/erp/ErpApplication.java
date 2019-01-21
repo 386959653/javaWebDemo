@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -26,6 +27,7 @@ import java.util.List;
 //        SecurityAutoConfiguration.class})
 })
 @EnableAsync
+@EnableCaching  //开启缓存
 @MapperScan("com.weichi.erp.dao")
 public class ErpApplication {
     @Bean
