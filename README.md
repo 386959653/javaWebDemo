@@ -177,4 +177,11 @@
                 
                         return jsonResult;
                     }
-    
+    50. 引入caffeine缓存，用springBootCache管理 api可以参考springBootCache，
+    注意，有些情形下注解式缓存是不起作用的：同一个bean内部方法调用，子类调用父类中有缓存注解的方法等。
+    不起作用是因为缓存切面必须走代理才有效，这时可以手动使用CacheManager来获得缓存效果，例子如下：
+            
+            @Autowired
+                CacheManager cacheManager;
+                
+            hotGoodsList = (List<HotGoods>) cacheManager.getCache("myCache").get("getHotGoods",ArrayList.class);
