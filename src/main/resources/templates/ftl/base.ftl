@@ -48,7 +48,7 @@
     <i class="fa fa-refresh fa-spin"></i>
 </div>
 <div style="z-index:1030;position: absolute;">
-    <a href="#top" id="toTop" style="display: inline; font-size: 4em" data-toggle="tooltip" title="回到顶部">
+    <a href="#top" id="toTop" style="display: none; font-size: 4em" data-toggle="tooltip" title="回到顶部">
         <span class="glyphicon glyphicon-circle-arrow-up"></span></a>
 </div>
     <#nested>
