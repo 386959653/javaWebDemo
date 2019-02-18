@@ -34,7 +34,9 @@
     密码都是123，访问http://localhost:8080/hello2需要user角色，访问http://localhost:8080/userList需要admin角色
     ，如果具有了admin角色，就可以访问只有user角色可以访问的链接,具体查看MyAccessDecisionManager.java 和
      MyInvocationSecurityMetadataSourceService.java，在sys_permission表中配置要过滤的链接，不仅支持全匹配
-     也支持通配符匹配，比如/dashboardController/**，就能匹配所有/dashboardController/下的链接
+     也支持通配符匹配，比如/dashboardController/**，就能匹配所有/dashboardController/下的链接。匹配的链接指的是
+     @RequestMapping("匹配的链接")中定义的链接，不匹配get请求中?号后面的字符串。把权限匹配给哪个角色通过
+     role_permission表配置
     15. 实现退出系统功能
     16. 实现登录错误提示功能
     17. 实现jsonResult

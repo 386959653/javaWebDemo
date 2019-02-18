@@ -27,7 +27,9 @@ public class KaptchaConfig {
         properties.setProperty("kaptcha.textproducer.font.names", "宋体,楷体,微软雅黑");
         properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.FishEyeGimpy");
         properties.setProperty("kaptcha.textproducer.char.space", "6");
-        properties.setProperty("kaptcha.textproducer.char.string", "acde3457gfhnmpwxLHQ");
+        //        properties.setProperty("kaptcha.textproducer.char.string", "acde3457gfhnmpwxLHQ");
+        // 验证码设置为数字
+        properties.setProperty("kaptcha.textproducer.char.string", "0123456789");
         Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
 
