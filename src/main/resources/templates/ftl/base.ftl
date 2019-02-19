@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="${ctx}/css/myStyle.css" type="text/css"/>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="${ctx}/js/utils.js"></script>
-    <link rel="stylesheet" href="../../css/adminLTE/component/font-awesome/css/font-awesome.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctx}/css/adminLTE/component/font-awesome/css/font-awesome.css" type="text/css"/>
 
 <#-- 回到顶部插件 -->
     <script src="${ctx}/js/jquery.scrollToTop.min.js"></script>

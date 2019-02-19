@@ -66,6 +66,7 @@ css='
                 </li>
                 <div id="verifyCodeCheckResult" style="display:<#if captchaError ??> block<#else> none</#if>"
                      class="alert alert-danger alert-dismissable text-center">
+                    ${captchaError?if_exists}
                 </div>
                 <#if error ??>
     <div class="alert alert-danger alert-dismissable text-center">

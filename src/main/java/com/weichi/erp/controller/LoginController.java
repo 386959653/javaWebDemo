@@ -78,7 +78,7 @@ public class LoginController {
         String captchaId = (String) httpSession.getAttribute(Constants.KAPTCHA_SESSION_KEY);
         if (!verifyCode.equalsIgnoreCase(captchaId)) {
             httpSession.removeAttribute(Constants.KAPTCHA_SESSION_KEY);
-            map.put("captchaError", "captchaError");
+            map.put("captchaError", "验证码错误");
             return "register";
         }
 
