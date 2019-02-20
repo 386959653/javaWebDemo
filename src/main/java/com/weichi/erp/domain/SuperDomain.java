@@ -19,11 +19,36 @@ public class SuperDomain<T extends Model> extends Model<T> {
     @TableField(fill = FieldFill.INSERT)
     private String insertUsername;
     @TableField(fill = FieldFill.INSERT)
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date insertTime;
     @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updateUsername;
+    //    slickGrid自带字段
+    @TableField(exist = false)
+    @JSONField(name = "_state")
+    private String state;
+    @TableField(exist = false)
+    @JSONField(name = "_no_")
+    private String no;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
+    }
 
     public String getInsertUsername() {
         return insertUsername;

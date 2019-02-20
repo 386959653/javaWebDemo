@@ -191,3 +191,4 @@
                         cacheManager.getCache("myCache").put("getHotGoods",this.getHotGoods());
                         hotGoodsList = (List<HotGoods>) cacheManager.getCache("myCache").get("getHotGoods", ArrayList.class);
                     }
+    51. 引入slickGrid表格编辑前端框架
