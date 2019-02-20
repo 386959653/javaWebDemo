@@ -22,6 +22,7 @@
     3. 实现了在开发环境中控制台打印sql语句
     4. 实现了利用maven让应用在不同的环境使用不同的配置
     5. 实现基于springSecurity可以在数据库里配置的登录验证（默认用户名admin，密码是：123）
+    6. 用户登录验证实现类 MyUserDetailsService.java
     7. 有完整的日志功能，获取日志语句：private Logger logger = LoggerFactory.getLogger(this.getClass());
     8. 提供了mybatis自动生成代码插件
     9. 实现了mybatis的分页功能

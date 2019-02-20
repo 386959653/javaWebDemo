@@ -139,3 +139,6 @@ alter table sys_config comment '系统配置表';
 
 ALTER TABLE `sys_config`
   ADD COLUMN `descp` VARCHAR(1000) NULL   COMMENT '描述' AFTER `parm_value`;
+
+ALTER TABLE `sys_user`
+  ADD COLUMN `enable_flag` ENUM('Y','N') DEFAULT 'Y'  NULL   COMMENT '是否生效' AFTER `password`;

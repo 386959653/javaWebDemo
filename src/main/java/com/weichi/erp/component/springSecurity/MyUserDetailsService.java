@@ -1,5 +1,6 @@
 package com.weichi.erp.component.springSecurity;
 
+import com.weichi.erp.Constant.BaseEnums;
 import com.weichi.erp.dao.SysRoleMapper;
 import com.weichi.erp.dao.SysUserMapper;
 import com.weichi.erp.dao.UserRoleMapper;
@@ -35,6 +36,8 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         // 根据用户名，查找到对应的密码，与角色
         SysUser sysUserCondition = new SysUser();
+        //        只查找有效用户
+        sysUserCondition.setEnableFlag(BaseEnums.enableFlag.Y.name());
         sysUserCondition.setUsername(s);
         SysUser sysUser = sysUserMapper.selectOne(sysUserCondition);
         if (sysUser == null) {
