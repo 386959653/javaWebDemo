@@ -5,6 +5,7 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.weichi.erp.component.myType.JsonResult;
 import com.weichi.erp.component.springSecurity.CustomWebAuthenticationDetails;
+import com.weichi.erp.component.utils.RSAUtils;
 import com.weichi.erp.component.utils.StringUtils;
 import com.weichi.erp.domain.MyApplicationProperties;
 import com.weichi.erp.domain.SysUser;
@@ -83,7 +84,13 @@ public class LoginController {
         }
 
         // 校验都通过，写入数据库
-        sysUser.setPassword(password);
+        try {
+            sysUser.setPassword(RSAUtils.decode(password));
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("error", e.getMessage());
+            return "register";
+        }
         sysUser.setInsertUsername("registerUser");
         sysUser.setUpdateUsername("registerUser");
         sysUser.insert();

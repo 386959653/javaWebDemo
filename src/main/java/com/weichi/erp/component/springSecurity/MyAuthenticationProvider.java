@@ -1,5 +1,6 @@
 package com.weichi.erp.component.springSecurity;
 
+import com.weichi.erp.component.utils.RSAUtils;
 import com.weichi.erp.domain.MyApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -52,7 +53,12 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         }
 
         //加密过程在这里体现
-        if (!password.equals(user.getPassword())) {
+        try {
+            if (!RSAUtils.decode(password).equals(user.getPassword())) {
+                throw new BadCredentialsException("Wrong password.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             throw new BadCredentialsException("Wrong password.");
         }
 

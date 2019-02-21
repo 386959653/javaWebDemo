@@ -1,7 +1,9 @@
 <#import "${ctx}/ftl/base.ftl" as ListPage>
 
 <@ListPage.Html title="登录" headAttr='
-
+<script type="text/javascript" src="${ctx}/js/RSA.js"></script>
+<script type="text/javascript" src="${ctx}/js/BigInt.js"></script>
+<script type="text/javascript" src="${ctx}/js/Barrett.js"></script>
 '
 css='
 body{
@@ -31,8 +33,9 @@ input[type="text"],input[type="password"]{padding-left:26px;}
                         </div>
                         <div class="form-group ">
                             <i class="fa fa-lock fa-lg"></i>
-                            <input class="form-control required" type="password" placeholder="密码" id="password"
-                                   name="password"/>
+                            <input class="form-control required" type="password" placeholder="密码" id="realPassword"
+                                   name="realPassword"/>
+                            <input type="hidden" id="password" name="password"/>
                         </div>
                         <div class="form-group ">
                             <div class="row">
@@ -106,6 +109,14 @@ input[type="text"],input[type="password"]{padding-left:26px;}
             }
         });
     });
+
+    $('#submit').click(function () {
+        var password = $("#realPassword").val();
+        // 密码加密
+        $("#password").val(encryptedString(getKey(), password));
+        $("#loginForm").submit();
+    });
+
 </script>
 
 </@ListPage.Html>

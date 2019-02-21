@@ -3,6 +3,10 @@
 <@ListPage.Html title="注册 - ${companyName?if_exists}"
 headAttr='
     <link rel="stylesheet" href="${ctx}/css/register.css" type="text/css"/>
+
+    <script type="text/javascript" src="${ctx}/js/RSA.js"></script>
+<script type="text/javascript" src="${ctx}/js/BigInt.js"></script>
+<script type="text/javascript" src="${ctx}/js/Barrett.js"></script>
 '
 css='
 
@@ -24,7 +28,9 @@ css='
                            title="请输入你常用的电子邮箱作为你的账号" value="">
                 </li>
                 <li>
-                    <input class="aw-register-pwd form-control" type="password" name="password" placeholder="密码">
+                    <input class="aw-register-pwd form-control" type="password" id="realPassword" name="realPassword"
+                           placeholder="密码">
+                    <input type="hidden" id="password" name="password"/>
                 </li>
                 <li class="aw-register-verify">
                     <img class="pull-right" id="verifyCodeImg" onclick="this.src='${ctx}/verifyCode?d='+new Date()*1"
@@ -114,6 +120,13 @@ css='
                 $("#submit").attr("disabled", false);
             }
         });
+    });
+
+    $('#submit').click(function () {
+        var password = $("#realPassword").val();
+        // 密码加密
+        $("#password").val(encryptedString(getKey(), password));
+        $("#register_form").submit();
     });
 
     $(function () {
