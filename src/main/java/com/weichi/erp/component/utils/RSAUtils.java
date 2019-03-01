@@ -25,6 +25,7 @@ public class RSAUtils {
 
     private static String RSAKeyStore;
     private static BouncyCastleProvider provider = null;
+    private static KeyPair keyPair = null;
 
     static {
         try {
@@ -62,12 +63,15 @@ public class RSAUtils {
     }
 
     public static KeyPair getKeyPair() throws Exception {
-        FileInputStream fis = new FileInputStream(RSAKeyStore);
-        ObjectInputStream oos = new ObjectInputStream(fis);
-        KeyPair kp = (KeyPair) oos.readObject();
-        oos.close();
-        fis.close();
-        return kp;
+        //        缓存keyPair，不用每次从文件读取
+        if (keyPair == null) {
+            FileInputStream fis = new FileInputStream(RSAKeyStore);
+            ObjectInputStream oos = new ObjectInputStream(fis);
+            keyPair = (KeyPair) oos.readObject();
+            oos.close();
+            fis.close();
+        }
+        return keyPair;
     }
 
     public static void saveKeyPair(KeyPair kp) throws Exception {
