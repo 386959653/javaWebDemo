@@ -4,10 +4,10 @@
     1. idea中checkout from version control
     2. 把模块名称erp改为你要做的新项目名称，同时把pom文件中erp替换为你要做的新项目名称
     3. 把Project compiler output 路径改为“项目地址\target”如：D:\IdeaProjects\movie\target
-    4. 在idea中配置tomcat，默认端口8080，before launch 里设置run maven goal clean 和 run maven goal package
+    4. 在idea中配置tomcat，默认端口8080，before launch 里设置run maven goal clean 和 run maven goal package，deployment下的Application Context 设置为：“\”
     5. 跳过maven test
     6. 数据库初始化：在mysql数据库中执行sql脚本文件doc/sqlScript/databaseInit.sql
-    7. 配置rebel.xml，让jrebel不处理mapper，因为mybatis热刷新已经处理了
+    7. 配置jrebel，勾选后会在resources里出现rebel.xml,然后配置rebel.xml，让jrebel不处理mapper，因为mybatis热刷新已经处理了
     
             <classpath>
             		<dir name="项目路径/target/classes">
