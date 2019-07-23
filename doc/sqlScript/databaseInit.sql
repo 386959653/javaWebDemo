@@ -90,7 +90,7 @@ CREATE TABLE `sys_user` (
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`id`,`username`,`password`,`update_time`,`insert_time`,`insert_username`,`update_username`) values (1,'test','123','2018-06-14 16:33:13',NULL,NULL,NULL),(2,'admin','123',NULL,NULL,NULL,NULL),(1007176995952451586,NULL,NULL,NULL,'2018-06-14 16:24:56',NULL,NULL),(1007179783004606466,NULL,NULL,NULL,'2018-06-14 16:35:47','anonymousUser',NULL),(1007181970631864322,NULL,NULL,'2018-06-14 16:44:29','2018-06-14 16:44:29','anonymousUser',NULL),(1007182812852318210,NULL,NULL,'2018-06-14 16:47:50','2018-06-14 16:47:50','anonymousUser','anonymousUser');
+insert  into `sys_user`(`id`,`username`,`password`,`update_time`,`insert_time`,`insert_username`,`update_username`) values (1,'test','123','2018-06-14 16:33:13',NULL,NULL,NULL),(2,'admin','123',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `user_role` */
 

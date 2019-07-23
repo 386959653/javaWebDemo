@@ -37,7 +37,7 @@
      MyInvocationSecurityMetadataSourceService.java，在sys_permission表中配置要过滤的链接，不仅支持全匹配
      也支持通配符匹配，比如/dashboardController/**，就能匹配所有/dashboardController/下的链接。匹配的链接指的是
      @RequestMapping("匹配的链接")中定义的链接，不匹配get请求中?号后面的字符串。把权限匹配给哪个角色通过
-     role_permission表配置
+     role_permission表配置，给用户增加一个角色，他就拥有该角色的权限，重新登录一下就可以生效。
     15. 实现退出系统功能
     16. 实现登录错误提示功能
     17. 实现jsonResult
