@@ -307,8 +307,9 @@
                 <resource.delimiter>${}</resource.delimiter>
                 <jdbc.url>jdbc:mysql://47.100.47.85:3306/erp?useUnicode=true&amp;characterEncoding=utf8
                 </jdbc.url>
-                <jdbc.username>root</jdbc.username>
-                <jdbc.password>123456</jdbc.password>
+                <!--基于安全原因，生产数据库相关信息配置在本地maven settings.xml-->
+                <!--<jdbc.username>root</jdbc.username>-->
+                <!--<jdbc.password>123456</jdbc.password>-->
                 <log4j.level>DEBUG</log4j.level>
                 <!--mybatis热加载-->
                 <refreshMapper>true</refreshMapper>
