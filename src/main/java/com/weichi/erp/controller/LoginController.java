@@ -10,6 +10,8 @@ import com.weichi.erp.component.utils.StringUtils;
 import com.weichi.erp.domain.MyApplicationProperties;
 import com.weichi.erp.domain.SysUser;
 import com.weichi.erp.domain.UserRole;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,6 +39,7 @@ import java.util.Map;
  */
 @Controller
 public class LoginController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     DefaultKaptcha defaultKaptcha;
     @Autowired

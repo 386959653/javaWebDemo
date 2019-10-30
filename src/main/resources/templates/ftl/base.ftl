@@ -10,10 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <#-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>${title}</title>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    <#--jquery文件-->
+    <script src="${ctx}/js/jquery-3.4.1.min.js"></script>
 <#-- 3.3.7版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="${ctx}/css/bootstrap/css/bootstrap.min.css" type="text/css"/>
 

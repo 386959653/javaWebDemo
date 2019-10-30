@@ -142,3 +142,6 @@ ALTER TABLE `sys_config`
 
 ALTER TABLE `sys_user`
   ADD COLUMN `enable_flag` ENUM('Y','N') DEFAULT 'Y'  NULL   COMMENT '是否生效' AFTER `password`;
+
+ALTER TABLE `sys_user`
+    ADD COLUMN `note` VARCHAR(100) NULL COMMENT '备注' AFTER `enable_flag`;
