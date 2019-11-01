@@ -305,7 +305,7 @@
             </activation>
             <properties>
                 <resource.delimiter>${}</resource.delimiter>
-                <jdbc.url>jdbc:mysql://47.100.47.85:3306/erp?useUnicode=true&amp;characterEncoding=utf8
+                <jdbc.url>jdbc:mysql://47.100.47.85:3306/erp?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false
                 </jdbc.url>
                 <!--基于安全原因，生产数据库相关信息配置在本地maven settings.xml-->
                 <!--<jdbc.username>root</jdbc.username>-->
@@ -323,7 +323,8 @@
             </activation>
             <properties>
                 <resource.delimiter>${}</resource.delimiter>
-                <jdbc.url>jdbc:mysql://mysql:3306/erp?useUnicode=true&amp;characterEncoding=utf8</jdbc.url>
+                <jdbc.url>jdbc:mysql://mysql:3306/erp?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false
+                </jdbc.url>
                 <!--基于安全原因，生产数据库相关信息配置在本地maven settings.xml-->
                 <!--<jdbc.username>root</jdbc.username>-->
                 <!--<jdbc.password>123456</jdbc.password>-->
