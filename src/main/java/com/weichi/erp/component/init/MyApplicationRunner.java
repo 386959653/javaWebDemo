@@ -1,9 +1,8 @@
 package com.weichi.erp.component.init;
 
 import com.weichi.erp.service.SysConfigService;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,13 +10,13 @@ import org.springframework.stereotype.Component;
  * Created by Wewon on 2018/11/9.
  */
 @Component
-public class MyApplicationRunner implements ApplicationRunner {
+public class MyApplicationRunner implements InitializingBean {
 
     @Autowired
     private SysConfigService sysConfigService;
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void afterPropertiesSet() throws Exception {
         sysConfigService.refreshSysConfig();
     }
 }
