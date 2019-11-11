@@ -195,3 +195,35 @@
     51. 引入slickGrid表格编辑前端框架
     52. 实现前端用户登录和注册密码RSA加密，后端解密
     53. 引入计数特效js插件“countUp.js”
+    54. 改造“slick.grid.js”，添加语句
+            
+             // 弹出错误提示
+              layer.open({
+                  title: [
+                      '错误消息',
+                      'background-color: #FF4351; color:#fff;'
+                  ]
+                  ,
+                  content: validationResults.msg
+                  ,btn: '我知道了'
+              });
+        这样就是完善了单元格输入数据验证功能，使用示例：
+                            
+            function searchNumValidator(value) {
+                       if (value.length != 4 || isNaN(value)) {
+                           return {valid: false, msg: "内检号格式不正确，应为4位数字！"};
+                       } else {
+                           return {valid: true, msg: null};
+                       }
+                   }
+                //   以下是对应的列（columns）定义
+            , {
+                           id: "searchNum",
+                           name: "内检号",
+                           field: "searchNum",
+                           width: 60
+                           ,editor: Slick.Editors.Text
+                           ,validator: searchNumValidator
+                       }
+           
+    55.

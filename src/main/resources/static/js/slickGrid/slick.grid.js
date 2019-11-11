@@ -3838,6 +3838,17 @@ if (typeof Slick === "undefined") {
                         $(activeCellNode).width();  // force layout
                         $(activeCellNode).addClass("invalid");
 
+                        // 弹出错误提示
+                        layer.open({
+                            title: [
+                                '错误消息',
+                                'background-color: #FF4351; color:#fff;'
+                            ]
+                            ,
+                            content: validationResults.msg
+                            , btn: '我知道了'
+                        });
+
                         trigger(self.onValidationError, {
                             editor: currentEditor,
                             cellNode: activeCellNode,
