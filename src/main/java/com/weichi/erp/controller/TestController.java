@@ -21,6 +21,7 @@ public class TestController {
 //        return service.selectById(1).toString();
     }
 
+    //    需要普通用户权限
     @RequestMapping("jsonResultTest")
     public JsonResult<?> jsonResultTest() {
         JsonResult jsonResult = new JsonResult();

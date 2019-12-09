@@ -33,7 +33,9 @@ CREATE TABLE `role_permission` (
 
 /*Data for the table `role_permission` */
 
-insert  into `role_permission`(`id`,`role_id`,`permission_id`,`insert_username`,`insert_time`,`update_username`,`update_time`) values (1,1,1,NULL,NULL,NULL,NULL),(2,2,1,NULL,NULL,NULL,NULL);
+insert into `role_permission`(`id`, `role_id`, `permission_id`, `insert_username`, `insert_time`, `update_username`,
+                              `update_time`)
+values (1, 2, 1, NULL, NULL, NULL, NULL);
 
 /*Table structure for table `sys_permission` */
 
@@ -52,7 +54,9 @@ CREATE TABLE `sys_permission` (
 
 /*Data for the table `sys_permission` */
 
-insert  into `sys_permission`(`id`,`permission_name`,`url`,`insert_username`,`insert_time`,`update_username`,`update_time`) values (1,'管理员','/userList',NULL,NULL,NULL,NULL);
+insert into `sys_permission`(`id`, `permission_name`, `url`, `insert_username`, `insert_time`, `update_username`,
+                             `update_time`)
+values (1, '普通用户', '/jsonResultTest', NULL, NULL, NULL, NULL);
 
 /*Table structure for table `sys_role` */
 
