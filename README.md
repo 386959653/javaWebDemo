@@ -225,4 +225,8 @@
                            ,validator: searchNumValidator
                        }
            
-    55.
+    55. 引入swagger自动生成API文档
+        
+        链接地址：http://localhost:8087/swagger-ui/
+        生成MD文档类：src/main/java/com/weichi/erp/tool/ApiDocGen.java
+    56.

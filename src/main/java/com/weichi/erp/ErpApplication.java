@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ import java.util.List;
 @EnableAsync
 @EnableCaching  //开启缓存
 @MapperScan("com.weichi.erp.dao")
+@EnableOpenApi
 public class ErpApplication {
     @Bean
     @ConfigurationProperties(prefix = "my")
