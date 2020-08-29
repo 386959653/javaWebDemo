@@ -14,7 +14,8 @@
                         <exclude name="项目路径/target/movie/WEB-INF/classes/mapper/**"/>
             		</dir>
             </classpath>
-    7. 用浏览器访问 http://localhost:8080/helloTest
+    7. 把Maven Profiles 勾选为 dev（注意勾为黑色不是灰色）
+    8. 用浏览器访问 http://localhost:8080/helloTest
 - 主要功能：
     1. mvc结构完整，便于后期基于这个骨架实现业务逻辑
     2. 实现了mybatis热加载
@@ -233,4 +234,6 @@
         生成MD文档类：
         
             src/main/java/com/weichi/erp/tool/ApiDocGen.java
-    56.
+    56. 引入 lombok
+    57. 增加扫描包实用类ClassScanerUtils
+    58. 增加SpringUtils实用类，以便非spring托管类可以获取spring托管类
