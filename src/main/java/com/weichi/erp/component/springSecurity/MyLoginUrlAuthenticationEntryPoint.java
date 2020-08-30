@@ -4,7 +4,6 @@ import com.weichi.erp.component.myType.JsonResult;
 import com.weichi.erp.component.utils.WebUtils;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import java.io.IOException;
 /**
  * Created by Wewon on 2018/7/10.
  */
-@Component
 public class MyLoginUrlAuthenticationEntryPoint extends LoginUrlAuthenticationEntryPoint {
 
     /**
